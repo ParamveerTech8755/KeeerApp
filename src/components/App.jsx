@@ -10,7 +10,8 @@ function App(){
 	const [notes, setNotes] = useState([])
 
 	function addNote(note){
-		setNotes(prevVal => [...prevVal, note])
+		if(note.title || note.content)
+			setNotes(prevVal => [...prevVal, note])
 	}
 	function deleteNote(ind){
 		setNotes(prevVal => {
@@ -24,6 +25,7 @@ function App(){
 		<div>
 			<Header />
 			<CreateArea addNote={addNote} />
+			<div className="note-container">
 			{notes.map((note,ind) =>
 				<Note
 				key={ind}
@@ -33,6 +35,7 @@ function App(){
 				deleteNote={deleteNote}
 				/>
 			)}
+			</div>
 			<Footer />
 		</div>
 		)
